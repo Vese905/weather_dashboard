@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Weather Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="text-center my-4">
+            <h1 class="display-4">Weather Dashboard</h1>
+            <p class="lead">View historical weather data easily</p>
+        </header>
+
+        <nav class="nav nav-pills nav-fill mb-4">
+            <button class="nav-link active" id="tempBtn">Temperature</button>
+            <button class="nav-link" id="rainBtn">Rainfall</button>
+            <button class="nav-link" id="windBtn">Wind Speed</button>
+        </nav>
+
+        <div id="loading" class="text-center my-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p>Loading weather data...</p>
+        </div>
+
+        <!-- Temperature View -->
+        <div id="tempView" class="weather-view">
+            <h2>Temperature Data</h2>
+            <p>Last 20 temperature readings at 2m height</p>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Time</th>
+                            <th>Temperature (°C)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tempData">
+                        <!-- Data will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Rainfall View -->
+        <div id="rainView" class="weather-view" style="display:none;">
+            <h2>Rainfall Data</h2>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="time-selector mb-3">
+                        <label for="rainTime" class="form-label">Select time period:</label>
+                        <select id="rainTime" class="form-select">
+                            <option value="20">Last 20 readings</option>
+                            <option value="24">Last 24 hours</option>
+                            <option value="48">Last 48 hours</option>
+                            <option value="72">Last 72 hours</option>
+                            <option value="168">Last week</option>
+                        </select>
+                    </div>
+                    <canvas id="rainChart"></canvas>
+                </div>
+                <div class="col-md-4">
+                    <div class="card stats-card">
+                        <div class="card-header bg-primary text-white">
+                            Rainfall Statistics (mm)
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group" id="rainStats">
+                                <!-- Stats will be inserted here -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive mt-3">
+                <table class="table table-striped">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Time</th>
+                            <th>Rainfall (mm)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rainData">
+                        <!-- Data will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Wind Speed View -->
+        <div id="windView" class="weather-view" style="display:none;">
+            <h2>Wind Speed Data</h2>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="time-selector mb-3">
+                        <label for="windTime" class="form-label">Select time period:</label>
+                        <select id="windTime" class="form-select">
+                            <option value="20">Last 20 readings</option>
+                            <option value="24">Last 24 hours</option>
+                            <option value="48">Last 48 hours</option>
+                            <option value="72">Last 72 hours</option>
+                            <option value="168">Last week</option>
+                        </select>
+                    </div>
+                    <canvas id="windChart"></canvas>
+                </div>
+                <div class="col-md-4">
+                    <div class="card stats-card">
+                        <div class="card-header bg-primary text-white">
+                            Wind Speed Statistics (km/h)
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group" id="windStats">
+                                <!-- Stats will be inserted here -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive mt-3">
+                <table class="table table-striped">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Time</th>
+                            <th>Wind Speed (km/h)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="windData">
+                        <!-- Data will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <footer class="mt-5 text-center text-muted">
+            <p>Data provided by Open-Meteo API</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
